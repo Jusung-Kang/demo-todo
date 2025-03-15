@@ -23,4 +23,13 @@ public class BlogService {
     public List<Article> findAll(){
         return blogRepository.findAll();
     }
+
+    public Article findById (long id){
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이디가 없습니다."));
+    }
+
+    public void delete(long id){
+        blogRepository.deleteById(id);
+    }
 }
