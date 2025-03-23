@@ -1,5 +1,6 @@
 package com.to_do_list.demo_todo.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Column;
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class Article {
     
     @Id
+    @JsonProperty("id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;

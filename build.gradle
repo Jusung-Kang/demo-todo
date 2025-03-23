@@ -25,6 +25,10 @@ dependencies {
 	runtimeOnly 'com.h2database:h2' //인메모리 데이터베이스
 	compileOnly 'org.projectlombok:lombok' //롬북
 	annotationProcessor 'org.projectlombok:lombok' 
+	//implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //스프링 타임리프를 위한 스타터
+	//implementation 'org.springframework.boot:spring-boot-starter-security' //스프링 시큐리티를 위한 스타터
+	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' //타임리프에서 스프링 시큐리티를 위한 의존성 추가
+	//testImplementation 'org.springframework.security:spring-security-test' //스프링 시큐리티를 테스트 하기위한 의존성 추가
 }
 
 tasks.named('test') {
