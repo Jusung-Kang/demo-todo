@@ -25,6 +25,20 @@ function Detail() {
         //수정 페이지로 이동하는 기능
         navigate(`/updateAdd/${id}`);
     }
+
+    const DeleteArticle = (id) => {
+        //삭제 버튼을 눌렀을때 실행되는 함수
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            //TextController의 Mapping값과 동일하여야 한다. 즉 TextController에 DeleteMapping('api/articles/{id}')가 있어야 한다.
+            axios.delete(`/api/articles/${id}`)
+                .then(() => {
+                    alert("삭제 완료!");
+                    //삭제 완료 후 main 페이지로 이동하는 기능
+                    navigate(`/`);
+                })
+                .catch((error) => console.log("Error: ", error));
+        }
+    }
   
     if (!article) return <p>Loading...</p>
   
@@ -40,8 +54,8 @@ function Detail() {
             <label>Content: {article.content}</label>
           </p>
           <p>
-            <button onClick={() => toUpdateAddPage(id)}>수정 완료</button>
-            <button>삭제</button>
+            <button onClick={() => toUpdateAddPage(id)}>수정</button>
+            <button onClick={() => DeleteArticle(id)}>삭제</button>
           </p>
       </div>
     );

@@ -11,7 +11,10 @@ function UpdateAdd(){
 
     //값이 변경될때마다 바뀌는 역활을 한다.
     const handleChange = (e) => {
-        setArticle({ ...article, [e.target.name]: e.target.value });
+      //...article은 기존의 article 값을 가져오는 역활을 한다.
+      //e.target.name은 input의 name값을 가져오는 역활을 한다.
+      //e.target.value는 input의 value값을 가져오는 역활을 한다.
+      setArticle({ ...article, [e.target.name]: e.target.value });
     };
     
     //type=submit 버튼을 눌렀을때 실행되는 함수
@@ -23,7 +26,7 @@ function UpdateAdd(){
           alert("수정 완료!");
           //수정 완료 후 detail 페이지로 이동하는 기능
           //해당 도메인은 App.js에 존재 하여야 한다.
-          navigate(`/detail/${id}`);
+          navigate(`/`);
         })
         .catch((error) => console.log("Error: ", error));
     };
