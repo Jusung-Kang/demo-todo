@@ -9,6 +9,18 @@ function UpdateAdd(){
     //다른 페이지를 이동하기 위한 것이다.
     const navigate = useNavigate();
 
+    // if (id === ""){
+    //   var title = document.getElementById("txtTitle").value;
+    //   var content = document.getElementById("txtContent").value;
+
+    //   axios.post("/api/articles", {title, content})
+    //     .then(() =>{
+    //       alert("등록 완료!");
+    //       //등록 완료 후 main 페이지로 이동하는 기능
+    //       navigate(`/`);
+    //     })
+    //  }
+
     //값이 변경될때마다 바뀌는 역활을 한다.
     const handleChange = (e) => {
       //...article은 기존의 article 값을 가져오는 역활을 한다.
@@ -55,11 +67,11 @@ function UpdateAdd(){
             <form onSubmit={handleSubmit}>
               <p>
                 <label>Title:</label>
-                <input type="text" name="title" value={article.title} onChange={handleChange} />
+                <input type="text" name="title" id="txtTitle" value={article.title} onChange={handleChange} />
               </p>
               <p>
                 <label>Content:</label>
-                <input type="text" name="content" value={article.content} onChange={handleChange} />
+                <input type="text" name="content" id="txtContent" value={article.content} onChange={handleChange} />
               </p>
               <button type="submit">수정완료</button>
             </form>
