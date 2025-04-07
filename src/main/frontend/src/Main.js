@@ -21,13 +21,13 @@ function Main() {
     }
 
     const handleNewButtonClick = () => {
-      navigate(`/updateAdd`);
+      navigate(`/add`);
     }
    
     return (
       <div>
         <h1>ToDo리스트</h1>
-        <button onClick={handleNewButtonClick()}>ToDo리스트 추가</button>
+        <button onClick={ () => handleNewButtonClick()}>ToDo리스트 추가</button>
         <ul>
           {/* article을 받아와 뿌려주는 코드 START */}
           {article.map((article) => (

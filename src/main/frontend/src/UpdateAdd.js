@@ -32,27 +32,43 @@ function UpdateAdd(){
     //type=submit 버튼을 눌렀을때 실행되는 함수
     const handleSubmit = (e) => {
       e.preventDefault();
-      //TextController의 Mapping값과 동일하여야 한다. 즉 TextController에 PutMapping('api/articles/{id}')가 있어야 한다.
-      axios.put(`/api/articles/${id}`, article)
+      if (id){
+        //TextController의 Mapping값과 동일하여야 한다. 즉 TextController에 PutMapping('api/articles/{id}')가 있어야 한다.
+        axios.put(`/api/articles/${id}`, article)
         .then(() => {
           alert("수정 완료!");
           //수정 완료 후 detail 페이지로 이동하는 기능
           //해당 도메인은 App.js에 존재 하여야 한다.
-          navigate(`/`);
+          navigate(`/main`);
         })
         .catch((error) => console.log("Error: ", error));
+      }
+      else{
+        axios.post("/api/articles", article)
+        .then(() => {
+          alert("등록 완료!");
+          navigate(`/main`);
+        })
+      }
+
     };
     
 
     //useEffect를 이용하여 페이지에 불러올 데이터 도메인을 axios를 사용하여 불러오는 기능
     useEffect(() => {
-        //TextController의 Mapping값과 동일하여야 한다. 즉 TextController에 GetMapping('api/articles/{id}')가 있어야 한다.
-        axios.get(`/api/articles/${id}`)
-          .then((res) => {
-            //setArticle을 사용하여 article의 값을 바꿔준다.
-            setArticle(res.data)
-          })
-          .catch((error) => console.log("Error: ", error));
+      if (id){
+         //TextController의 Mapping값과 동일하여야 한다. 즉 TextController에 GetMapping('api/articles/{id}')가 있어야 한다.
+         axios.get(`/api/articles/${id}`)
+         .then((res) => {
+           //setArticle을 사용하여 article의 값을 바꿔준다.
+           setArticle(res.data)
+         })
+         .catch((error) => console.log("Error: ", error));
+      }
+      else{
+        setArticle({title: "", content: ""});
+      }
+       
           //여기서 id의 역활은 id의 값이 바뀌었는지 확인한 후
           //useEffect를 다시 실행시키는 역할을 한다. 
           //즉, id가 바뀔때마다 useEffect를 다시 실행시킨다.
@@ -62,8 +78,8 @@ function UpdateAdd(){
     
     return (
         <div>
-            <h1>UpdateAdd 페이지</h1>
-            <h2>id: {id}</h2>
+            <h1>{id ? "UpdateAdd 페이지" : "새 글 작성 페이지"}</h1>
+            <h2>{id ? "id: ": ""}{id}</h2>
             <form onSubmit={handleSubmit}>
               <p>
                 <label>Title:</label>
@@ -73,7 +89,7 @@ function UpdateAdd(){
                 <label>Content:</label>
                 <input type="text" name="content" id="txtContent" value={article.content} onChange={handleChange} />
               </p>
-              <button type="submit">수정완료</button>
+              <button type="submit">{id ? "수정완료" : "등록"}</button>
             </form>
         </div>
     )   

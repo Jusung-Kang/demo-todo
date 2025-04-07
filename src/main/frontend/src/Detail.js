@@ -23,7 +23,7 @@ function Detail() {
 
     const toUpdateAddPage = (id) => {
         //수정 페이지로 이동하는 기능
-        navigate(`/updateAdd/${id}`);
+        navigate(`/update/${id}`);
     }
 
     const DeleteArticle = (id) => {
@@ -34,7 +34,7 @@ function Detail() {
                 .then(() => {
                     alert("삭제 완료!");
                     //삭제 완료 후 main 페이지로 이동하는 기능
-                    navigate(`/`);
+                    navigate(`/main`);
                 })
                 .catch((error) => console.log("Error: ", error));
         }

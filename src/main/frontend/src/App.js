@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useParams, Navigate } from 'react-router-dom';
 import axios from "axios";
 import Main from "./Main";
 import Detail from "./Detail";
@@ -14,9 +14,17 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        {/* 기본 진입시 */}
+        <Route path="/" element={<Navigate to="/main" />} />
+        {/* 메인 페이지 */}
+        <Route path="/main" element={<Main />} />
+        {/* 상세 페이지 */}
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/updateAdd/:id" element={<UpdateAdd />} />
+        {/* 업데이트 페이지 */}
+        <Route path="/update/:id" element={<UpdateAdd />} />
+        {/* 등록 페이지 */}
+        <Route path="/add" element={<UpdateAdd />} />
+        {/* 잘못된 경로 처리 */}
       </Routes>
     </Router>
   );
